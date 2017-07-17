@@ -1,10 +1,11 @@
-* Coding Conventions
-** Common
+# Coding Conventions
+## Common
 Always run perlcritic with level of severity at least 3 (harsh).
 If you wish to cause goodness of colleagues you can make it cruel. Try to run perlcritic with '-2' argument.
 If you have a beard and a sweater or if you are Larry Wall you can start perlcritic with '-1' or '--brutal' argument. We, Our Executive nerdy, approves it.
-Before start perlcritic you should run perltidy first (or in any case you will get a warning from perlcritic ).
-** Use this command to tidy your code:
+Before start perlcritic you should run perltidy first (or in any case you will get a warning from perlcritic).
+
+## Use this command to tidy your code:
 perltidy -pro=.../.perltidyrc Ronin.pm
 Or if you want to apply the changes in place (preferable option):
 perltidy -pro=.../.perltidyrc -b Ronin.pm
@@ -14,17 +15,19 @@ You can also save your own profile .perltidyrc into your home directory, but it'
 Profile "perlcritic" should contain the following minimum settings:
 severity = 3
 verbose = [%p] %m at line %l, column %c. %e. (Severity: %s)\n
-#[CodeLayout::RequireTidyCode]
-#perltidyrc = .perltidyrc
+// [CodeLayout::RequireTidyCode]
+// perltidyrc = .perltidyrc
 
 The minimum level of severity discussed above. Custom verbose format required to display the policy name (%p) and at the same time, reference to the page in the Canon.
 Read the Canon.
 And only then if you understand what is meant by a prophet and believe in what you are doing you can disable a policy or modify policy settings. 
 Try to read the manual pages on the policy, e.g.:
 man Perl::Critic::Policy::Subroutines::RequireArgUnpacking
-** Layer0
+
+## Layer0
 Based on Perl Best Practices book of the year 2009. With strict compliance with the rules.
-** Layer1
+
+## Layer1
 Basic deviations from the canon (here and later PBP =  'Perl Best Practices').
 Use 2 spaces for indentation instead of 4:
 
@@ -39,7 +42,8 @@ Code for .pertidyrc for supply this:
 --square-bracket-tightness=1
 --brace-tightness=1
 --block-brace-tightness=0
-** Layer2
+
+## Layer2
 Extended deviations from the canon (PBP).
 
 The package name (as well as the package file name) in addition to the rest can begin with an underscore. 
@@ -48,7 +52,7 @@ The package name can start with a lowercase letter.
 Also this package is able to export one subroutine by default, the name of which must match the package name (without the underscore of course).
 To prevent perlcritic warnings use this contruction in your code:
 use base qw{Exporter};
-our @EXPORT = qw{heir}; ## no critic (Modules::ProhibitAutomaticExportation)
+our @EXPORT = qw{heir}; // no critic (Modules::ProhibitAutomaticExportation)
 
 The  subroutine must begin with unpacking the formal variables, but in object-oriented methods it is allowed to postpone this procedure on one line below to separate the reference to the object.
 Use the code following this pattern:
@@ -61,7 +65,7 @@ sub Init {
   my ($arg1, $arg2, @rest) = @_;
   ...
 
-** Examples
+## Examples
 For example, output for simple perl script:
 ➜ scripts git:(master) perlcritic -3 valid.pl 
 Code not contained in explicit package at line 1, column 1. Violates encapsulation. (Severity: 4)
@@ -70,7 +74,7 @@ Regular expression without "/x" flag at line 6, column 20. See page 236 of PBP. 
 Module does not end with "1;" at line 8, column 1. Must end with a recognizable true value. (Severity: 4)
 Th output warnings are point to Perl Best Practices book with description of current deviation from standart.
 
-** Links
+## Links
 Oreilly Perl Best Practices Jul 2009
 
 .perltidyrc
