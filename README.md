@@ -15,8 +15,9 @@ You can also save your own profile .perltidyrc into your home directory, but it'
 Profile "perlcritic" should contain the following minimum settings:
 severity = 3
 verbose = [%p] %m at line %l, column %c. %e. (Severity: %s)\n
-// [CodeLayout::RequireTidyCode]
-// perltidyrc = .perltidyrc
+
+[CodeLayout::RequireTidyCode]
+perltidyrc = .perltidyrc
 
 The minimum level of severity discussed above. Custom verbose format required to display the policy name (%p) and at the same time, reference to the page in the Canon.
 Read the Canon.
