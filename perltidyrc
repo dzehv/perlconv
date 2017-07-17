@@ -1,0 +1,62 @@
+# This is a simple of a .perltidyrc configuration file using in Comodo cDome
+# Setting for PConv Layer 1 & Layer 2
+# See detalied information on: 
+# https://intranet.comodo.net/pages/viewpage.action?spaceKey=DEV&title=Perl+Code+Conventions
+
+#--backup-and-modify-in-place
+#--backup-file-extension=.tdy.bak
+
+--indent-columns=2
+--continuation-indentation=2
+--nooutdent-labels
+--nooutdent-keywords
+
+--paren-tightness=2
+--square-bracket-tightness=1
+--brace-tightness=1
+--block-brace-tightness=0
+
+--tight-secret-operators
+--nospace-for-semicolon
+
+--trim-qw
+
+--nooutdent-long-comments
+--minimum-space-to-comment=1
+--ignore-side-comment-lengths
+--closing-side-comments
+--closing-side-comment-interval=10
+--closing-side-comment-prefix="# end"
+--closing-side-comment-maximum-text=20
+--static-block-comments
+--static-block-comment-prefix=^#{2,}[^\s#]
+--static-side-comments
+
+--format-skipping
+--format-skipping-begin='#<<<'
+--format-skipping-end='#>>>'
+
+--opening-brace-always-on-right
+--opening-token-right
+--opening-paren-right
+--opening-hash-brace-right
+--opening-square-bracket-right
+
+#--vertical-tightness=0
+#--vertical-tightness-closing=0
+#--paren-vertical-tightness=0
+#--paren-vertical-tightness-closing=0
+#--square-bracket-vertical-tightness=0
+#--square-bracket-vertical-tightness-closing=0
+#--brace-vertical-tightness=0
+#--brace-vertical-tightness-closing=0
+#--block-brace-vertical-tightness=2
+
+--stack-opening-tokens
+--stack-opening-paren
+--stack-opening-hash-brace
+--stack-opening-square-bracket
+--stack-opening-block-brace
+
+
+-bar

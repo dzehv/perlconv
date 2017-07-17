@@ -1,0 +1,25 @@
+severity  = 3
+verbose   = [%p] %m at line %l, column %c. %e. (Severity: %s)\n
+
+[Subroutines::RequireArgUnpacking]
+short_subroutine_statements = 2
+
+#[CodeLayout::RequireTidyCode]
+#perltidyrc = .perltidyrc
+
+[NamingConventions::Capitalization]
+global_variables           = G_(?:(?!_)\w)+
+global_variable_exemptions = VERSION|ISA|EXPORT(?:_OK)?|EXPORT_TAGS|AUTOLOAD|ENV|SIG|TODO
+packages                   = _*[[:upper:]\d][[:upper:][:lower:]_\d]*|_+[[:lower:]_\d]+
+subroutines                = _*[[:upper:]\d][[:lower:]_\d]*|_*[[:lower:]_\d]+
+
+[ValuesAndExpressions::ProhibitMagicNumbers]
+severity  = 3
+
+[CodeLayout::ProhibitParensWithBuiltins]
+severity  = 3
+
+[ValuesAndExpressions::ProhibitInterpolationOfLiterals]
+severity  = 3
+
+
