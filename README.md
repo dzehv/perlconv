@@ -68,7 +68,7 @@ sub Init {
 
 ## Examples
 For example, output for simple perl script:
-➜ scripts git:(master) perlcritic -3 valid.pl 
+➜ scripts git:(master) perlcritic -3 valid.pl
 Code not contained in explicit package at line 1, column 1. Violates encapsulation. (Severity: 4)
 Expression form of "grep" at line 6, column 9. See page 169 of PBP. (Severity: 4)
 Regular expression without "/x" flag at line 6, column 20. See page 236 of PBP. (Severity: 3)
@@ -80,3 +80,8 @@ Oreilly Perl Best Practices Jul 2009
 
 .perltidyrc
 .perlcriticrc
+
+## Usage
+
+cp perltidyec ~/.perltidyrc
+cp perlcritick ~/.perlcriticrc
