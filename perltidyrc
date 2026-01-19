@@ -1,42 +1,44 @@
 # .perltidyrc
-# configuration matches emacs cperl-mode settings
-# (tabs, width 8, cuddled else)
+# optimized for: hard tabs (8 chars), cuddled else, no spaces
 
 # ----------------------------------------------------------------------
-# indentation and formatting
+# indentation mechanics
 # ----------------------------------------------------------------------
 
-# use hard tabs instead of spaces (matches indent-tabs-mode t)
+# use hard tabs
 --entab-leading-whitespace=8
-
-# set indentation width to 8 columns (matches standard-indent 8)
 --indent-columns=8
-
-# set tab width to 8 spaces (matches tab-width 8)
 --default-tabsize=8
 
+# CRITICAL FIX: continuation indentation must match tab width
+# default is 2, which forces spaces. setting it to 8 allows using 1 tab.
+--continuation-indentation=8
+
 # ----------------------------------------------------------------------
-# code style and structure
+# code style
 # ----------------------------------------------------------------------
 
-# merge else with closing brace (matches cperl-merge-trailing-else t)
-# example: } else {
+# cuddled else: } else {
 --cuddled-else
 
-# line length limit (standard for terminals)
-# with 8-char tabs this might feel tight, consider 100 if needed
---maximum-line-length=80
+# increase line length because 80 chars with 8-char tabs is too narrow
+# set to 0 to disable wrapping completely (if you prefer manual wrapping)
+# or 120 for modern screens
+--maximum-line-length=120
 
 # ----------------------------------------------------------------------
-# parentheses and blocks
+# parentheses and brackets
 # ----------------------------------------------------------------------
 
-# tighten parentheses to look more block-like
-# (matches logic of cperl-indent-parens-as-block t)
+# tight parentheses (matches cperl-mode block style)
 --paren-tightness=2
 
-# do not put space before semicolon
---no-space-for-semicolon
+# do not align vertically with spaces (block style)
+# this prevents perltidy from using spaces to align arguments like:
+# method( $arg1,
+#         $arg2 );  <-- these spaces are banned now
+--nooutdent-long-quotes
+--nospace-for-semicolon
 
-# do not outdent long quotes, keep them aligned
---no-outdent-long-quotes
+# try to avoid breaking lines at logical operators if possible
+--want-break-after='|| &&'
