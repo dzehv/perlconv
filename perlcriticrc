@@ -1,25 +1,60 @@
-severity  = 3
-verbose   = [%p] %m at line %l, column %c. %e. (Severity: %s)\n
+# .perlcriticrc
+# configuration designed for experienced developer managing legacy systems.
+# focuses on bugs and security, ignores stylistic conflicts (tabs, cuddled else).
 
-[Subroutines::RequireArgUnpacking]
-short_subroutine_statements = 2
+# ----------------------------------------------------------------------
+# global configuration
+# ----------------------------------------------------------------------
 
-#[CodeLayout::RequireTidyCode]
-#perltidyrc = .perltidyrc
+# severity level (1..5)
+# 5 = only critical issues (syntax/security)
+# 4 = high probability of bugs
+# 3 = balanced (recommended)
+# 1 = complain about everything (pbp style purism)
+severity = 3
 
-[NamingConventions::Capitalization]
-global_variables           = G_(?:(?!_)\w)+
-global_variable_exemptions = VERSION|ISA|EXPORT(?:_OK)?|EXPORT_TAGS|AUTOLOAD|ENV|SIG|TODO
-packages                   = _*[[:upper:]\d][[:upper:][:lower:]_\d]*|_+[[:lower:]_\d]+
-subroutines                = _*[[:upper:]\d][[:lower:]_\d]*|_*[[:lower:]_\d]+
+# output format
+# %f = file, %l = line, %c = col, %m = message, %p = policy name
+verbose = [%p] %m at line %l, column %c.\n
 
-[ValuesAndExpressions::ProhibitMagicNumbers]
-severity  = 3
+# ----------------------------------------------------------------------
+# exclusions (allow your coding style)
+# ----------------------------------------------------------------------
 
-[CodeLayout::ProhibitParensWithBuiltins]
-severity  = 3
+# allow hard tabs (we use tabs=8)
+[-CodeLayout::ProhibitHardTabs]
 
-[ValuesAndExpressions::ProhibitInterpolationOfLiterals]
-severity  = 3
+# allow cuddled else: } else {
+[-ControlStructures::ProhibitCuddledElse]
 
+# allow postfix controls (e.g., "return if $error")
+# conway hates them, wall loves them. we keep them.
+[-ControlStructures::ProhibitPostfixControls]
 
+# allow "unless" block (conway prefers "if not")
+[-ControlStructures::ProhibitUnlessBlocks]
+
+# ----------------------------------------------------------------------
+# inclusions & tuning (catch real problems)
+# ----------------------------------------------------------------------
+
+# enforce strict and warnings (crucial for legacy stability)
+[TestingAndDebugging::RequireUseStrict]
+severity = 5
+
+[TestingAndDebugging::RequireUseWarnings]
+severity = 5
+
+# security: prevent opening files with 2 arguments (allows injection)
+# e.g., open($fh, "$input") is bad if input contains "> /etc/passwd"
+# force usage of: open($fh, '<', $input)
+[InputOutput::ProhibitTwoArgOpen]
+severity = 5
+
+# maintainability: warn on super long functions
+# default is usually too strict for legacy, bumping up limits
+[Subroutines::ProhibitExcessComplexity]
+max_mccabe = 30
+
+[Subroutines::ProhibitManyArgs]
+max_arguments = 10
