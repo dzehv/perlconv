@@ -1,74 +1,42 @@
-# This is a simple of a .perltidyrc configuration file using in CWW project
-# Setting for Perl Convention Layer 1 & Layer 2
-# See detalied information on:
-# https://intranet.comodo.net/pages/viewpage.action?spaceKey=DEV&title=Perl+Code+Conventions
+# .perltidyrc
+# configuration matches emacs cperl-mode settings
+# (tabs, width 8, cuddled else)
 
-# The first of all STYLE
---perl-best-practices
+# ----------------------------------------------------------------------
+# indentation and formatting
+# ----------------------------------------------------------------------
 
-#I/O control
---nostandard-output
---nostandard-error-output
---backup-and-modify-in-place
---backup-file-extension=.untidy
+# use hard tabs instead of spaces (matches indent-tabs-mode t)
+--entab-leading-whitespace=8
 
-#FORMATTING OPTIONS
-#Basic Options
---indent-columns=4
-#--maximum-line-length=80
+# set indentation width to 8 columns (matches standard-indent 8)
+--indent-columns=8
 
-#Code Indentation Control
---continuation-indentation=2
---nooutdent-long-quotes
---nooutdent-labels
---nooutdent-keywords
+# set tab width to 8 spaces (matches tab-width 8)
+--default-tabsize=8
 
-#Whitespace Control
+# ----------------------------------------------------------------------
+# code style and structure
+# ----------------------------------------------------------------------
+
+# merge else with closing brace (matches cperl-merge-trailing-else t)
+# example: } else {
+--cuddled-else
+
+# line length limit (standard for terminals)
+# with 8-char tabs this might feel tight, consider 100 if needed
+--maximum-line-length=80
+
+# ----------------------------------------------------------------------
+# parentheses and blocks
+# ----------------------------------------------------------------------
+
+# tighten parentheses to look more block-like
+# (matches logic of cperl-indent-parens-as-block t)
 --paren-tightness=2
---square-bracket-tightness=1
---brace-tightness=1
---block-brace-tightness=0
 
---tight-secret-operators
---nospace-for-semicolon
---nospace-terminal-semicolon
---noadd-semicolons
+# do not put space before semicolon
+--no-space-for-semicolon
 
---nospace-after-keyword="my local our"
---trim-qw
-
-#Comment Controls
---nooutdent-long-comments
---minimum-space-to-comment=1
---ignore-side-comment-lengths
-
---closing-side-comments
---closing-side-comment-interval=10
---closing-side-comment-prefix="# end"
---closing-side-comment-maximum-text=20
-
---static-block-comments
---static-block-comment-prefix=^#{2,}[^\s#]
-
---static-side-comments
-
-#Skipping Selected Sections of Code
---format-skipping
---format-skipping-begin='#<<<'
---format-skipping-end='#>>>'
-
-#Line Break Control
---nocuddled-else
---noopening-brace-on-new-line
---opening-brace-always-on-right
-
---opening-token-right
---opening-paren-right
---opening-hash-brace-right
---opening-square-bracket-right
-#--weld-nested-containers
---stack-opening-tokens
---stack-opening-paren
---stack-opening-hash-brace
---stack-opening-square-bracket
---stack-opening-block-brace
+# do not outdent long quotes, keep them aligned
+--no-outdent-long-quotes

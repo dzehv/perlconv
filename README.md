@@ -1,4 +1,5 @@
 # Coding Conventions
+
 ## Common
 Always run perlcritic with level of severity at least 3 (harsh).
 If you wish to cause goodness of colleagues you can make it cruel. Try to run perlcritic with '-2' argument.
@@ -9,7 +10,7 @@ Before start perlcritic you should run perltidy first (or in any case you will g
 perltidy -pro=.../.perltidyrc Ronin.pm
 Or if you want to apply the changes in place (preferable option):
 perltidy -pro=.../.perltidyrc -b Ronin.pm
-Note the 3 dots at the beginning of the path to the profile, this means to look for this file in the current directory and in parent directories. 
+Note the 3 dots at the beginning of the path to the profile, this means to look for this file in the current directory and in parent directories.
 You can also save your own profile .perltidyrc into your home directory, but it's preferable to store it in the directory with the project (e.g. '~/svn/cdm/node/trunk/lib/perl/CDOME')
 
 Profile "perlcritic" should contain the following minimum settings:
@@ -21,7 +22,7 @@ perltidyrc = .perltidyrc
 
 The minimum level of severity discussed above. Custom verbose format required to display the policy name (%p) and at the same time, reference to the page in the Canon.
 Read the Canon.
-And only then if you understand what is meant by a prophet and believe in what you are doing you can disable a policy or modify policy settings. 
+And only then if you understand what is meant by a prophet and believe in what you are doing you can disable a policy or modify policy settings.
 Try to read the manual pages on the policy, e.g.:
 man Perl::Critic::Policy::Subroutines::RequireArgUnpacking
 
@@ -47,7 +48,7 @@ Code for .pertidyrc for supply this:
 ## Layer2
 Extended deviations from the canon (PBP).
 
-The package name (as well as the package file name) in addition to the rest can begin with an underscore. 
+The package name (as well as the package file name) in addition to the rest can begin with an underscore.
 In this case the package name can start with a lowercase letter.
 The package name can start with a lowercase letter.
 Also this package is able to export one subroutine by default, the name of which must match the package name (without the underscore of course).
