@@ -1,60 +1,52 @@
 # .perlcriticrc
-# configuration designed for experienced developer managing legacy systems.
-# focuses on bugs and security, ignores stylistic conflicts (tabs, cuddled else).
+# maintained layout and security rules, ignoring cuddled else conflicts
 
 # ----------------------------------------------------------------------
 # global configuration
 # ----------------------------------------------------------------------
 
-# severity level (1..5)
-# 5 = only critical issues (syntax/security)
-# 4 = high probability of bugs
-# 3 = balanced (recommended)
-# 1 = complain about everything (pbp style purism)
 severity = 3
-
-# output format
-# %f = file, %l = line, %c = col, %m = message, %p = policy name
 verbose = [%p] %m at line %l, column %c.\n
 
 # ----------------------------------------------------------------------
 # exclusions (allow your coding style)
 # ----------------------------------------------------------------------
 
-# allow hard tabs (we use tabs=8)
-[-CodeLayout::ProhibitHardTabs]
-
-# allow cuddled else: } else {
+# disable complaints about cuddled else
 [-ControlStructures::ProhibitCuddledElse]
 
-# allow postfix controls (e.g., "return if $error")
-# conway hates them, wall loves them. we keep them.
+# allow postfix controls like if/unless at the end of a line
 [-ControlStructures::ProhibitPostfixControls]
 
-# allow "unless" block (conway prefers "if not")
-[-ControlStructures::ProhibitUnlessBlocks]
+# allow string eval for legacy compatibility
+[-BuiltInFunctions::ProhibitStringEval]
 
 # ----------------------------------------------------------------------
-# inclusions & tuning (catch real problems)
+# layout & formatting
 # ----------------------------------------------------------------------
 
-# enforce strict and warnings (crucial for legacy stability)
+# codelayout::prohibithardtabs is active by default to ban tabs
+
+# prohibit trailing whitespace at the end of lines
+[CodeLayout::ProhibitTrailingWhitespace]
+
+# ----------------------------------------------------------------------
+# inclusions & tuning (bugs and security)
+# ----------------------------------------------------------------------
+
 [TestingAndDebugging::RequireUseStrict]
 severity = 5
 
 [TestingAndDebugging::RequireUseWarnings]
 severity = 5
 
-# security: prevent opening files with 2 arguments (allows injection)
-# e.g., open($fh, "$input") is bad if input contains "> /etc/passwd"
-# force usage of: open($fh, '<', $input)
+# prevent unsafe two-argument open calls
 [InputOutput::ProhibitTwoArgOpen]
 severity = 5
 
-# maintainability: warn on super long functions
-# default is usually too strict for legacy, bumping up limits
+# complexity limits tuned for legacy codebases
 [Subroutines::ProhibitExcessComplexity]
-max_mccabe = 30
+max_mccabe = 25
 
 [Subroutines::ProhibitManyArgs]
-max_arguments = 10
+max_arguments = 8

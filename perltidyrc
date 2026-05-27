@@ -1,44 +1,29 @@
 # .perltidyrc
-# optimized for: hard tabs (8 chars), cuddled else, no spaces
+# legacy-safe custom pbp style: 4 spaces, 78 max line, keep cuddled else
 
 # ----------------------------------------------------------------------
 # indentation mechanics
 # ----------------------------------------------------------------------
 
-# use hard tabs
---entab-leading-whitespace=8
---indent-columns=8
---default-tabsize=8
-
-# CRITICAL FIX: continuation indentation must match tab width
-# default is 2, which forces spaces. setting it to 8 allows using 1 tab.
---continuation-indentation=8
+# 4 spaces indent
+-i=4
+-ci=4
 
 # ----------------------------------------------------------------------
 # code style
 # ----------------------------------------------------------------------
 
-# cuddled else: } else {
---cuddled-else
+# keep cuddled else style
+-ce
 
-# increase line length because 80 chars with 8-char tabs is too narrow
-# set to 0 to disable wrapping completely (if you prefer manual wrapping)
-# or 120 for modern screens
---maximum-line-length=120
+# line length limit according to pbp standard
+-l=78
 
 # ----------------------------------------------------------------------
 # parentheses and brackets
 # ----------------------------------------------------------------------
 
-# tight parentheses (matches cperl-mode block style)
---paren-tightness=2
-
-# do not align vertically with spaces (block style)
-# this prevents perltidy from using spaces to align arguments like:
-# method( $arg1,
-#         $arg2 );  <-- these spaces are banned now
---nooutdent-long-quotes
---nospace-for-semicolon
-
-# try to avoid breaking lines at logical operators if possible
---want-break-after='|| &&'
+# standard loose parenthesis tightness from pbp
+-pt=1
+-bt=1
+-sbt=1
