@@ -15,3 +15,6 @@
 
 # strict parenthesis tightness
 -pt=2
+
+# no blank before block comments
+-nbbc
