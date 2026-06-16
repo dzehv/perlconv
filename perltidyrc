@@ -23,7 +23,7 @@
 # parentheses and brackets
 # ----------------------------------------------------------------------
 
-# standard loose parenthesis tightness from pbp
--pt=1
+# strict parenthesis tightness
+-pt=2
 -bt=1
 -sbt=1
