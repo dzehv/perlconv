@@ -2,28 +2,16 @@
 # legacy-safe custom pbp style: 4 spaces, 78 max line, keep cuddled else
 
 # ----------------------------------------------------------------------
-# indentation mechanics
+# base rules
 # ----------------------------------------------------------------------
-
-# 4 spaces indent
--i=4
--ci=4
+-pbp
 
 # ----------------------------------------------------------------------
-# code style
+# code style overrides
 # ----------------------------------------------------------------------
 
 # keep cuddled else style
 -ce
 
-# line length limit according to pbp standard
--l=78
-
-# ----------------------------------------------------------------------
-# parentheses and brackets
-# ----------------------------------------------------------------------
-
 # strict parenthesis tightness
 -pt=2
--bt=1
--sbt=1
